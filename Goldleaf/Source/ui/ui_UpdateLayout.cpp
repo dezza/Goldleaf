@@ -41,6 +41,7 @@ namespace ui
 
     void UpdateLayout::StartUpdateSearch()
     {
+#ifdef ENABLE_net
         if(global_app_updated) return;
         this->downloadBar->SetVisible(false);
         this->infoText->SetText(cfg::strings::Main.GetString(305));
@@ -84,5 +85,6 @@ namespace ui
         }
         else if(latestv.IsHigher(currentv)) global_app->CreateShowDialog(cfg::strings::Main.GetString(284), cfg::strings::Main.GetString(316), { cfg::strings::Main.GetString(234) }, true);
         global_app->ReturnToMainMenu();
+#endif
     }
 }

@@ -20,6 +20,9 @@
 */
 
 #include <ui/ui_MainApplication.hpp>
+#ifndef ENABLE_net
+#include <ui/ui_UpdateLayout.hpp>
+#endif
 
 extern ui::MainApplication::Ref global_app;
 extern cfg::Settings global_settings;
@@ -213,9 +216,13 @@ namespace ui
         this->hasusb = usb::detail::IsStateOk();
         this->usbImage->SetVisible(this->hasusb);
         u32 connstr = 0;
+#ifdef ENABLE_net
         Result rc = nifmGetInternetConnectionStatus(nullptr, &connstr, nullptr);
+#endif
         std::string connimg = "None";
+#ifdef ENABLE_net
         if(R_SUCCEEDED(rc)) if(connstr > 0) connimg = std::to_string(connstr);
+#endif
         if(connstr != this->connstate)
         {
             this->connImage->SetImage(global_settings.PathForResource("/Connection/" + connimg + ".png"));
@@ -225,10 +232,12 @@ namespace ui
         }
         if(connstr > 0)
         {
+#ifdef ENABLE_net
             u32 ip = gethostid();
             char sip[0x20] = {0};
             inet_ntop(AF_INET, &ip, sip, 0x20);
             this->ipText->SetText(String(sip));
+#endif
         }
         else this->ipText->SetText("");
         auto user = acc::GetSelectedUser();

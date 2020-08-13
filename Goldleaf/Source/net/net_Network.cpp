@@ -1,3 +1,4 @@
+#ifdef ENABLE_net
 
 /*
 
@@ -99,3 +100,4 @@ namespace net
         return (id == INADDR_LOOPBACK);
     }
 }
+#endif

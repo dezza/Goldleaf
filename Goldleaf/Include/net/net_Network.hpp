@@ -1,3 +1,4 @@
+#ifdef ENABLE_net
 
 /*
 
@@ -29,3 +30,4 @@ namespace net
     void RetrieveToFile(std::string URL, std::string Path, std::function<void(double Done, double Total)> Callback);
     bool HasConnection();
 }
+#endif
