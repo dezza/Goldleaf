@@ -59,7 +59,7 @@ APP_VERSION := $(VER_MAJOR).$(VER_MINOR).$(VER_MICRO)-dev
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE -Wl,-wrap,fatalThrow
 
-CFLAGS	:=	-g -O2 -ffunction-sections \
+CFLAGS	:=	-g -O0 -ffunction-sections \
 			$(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE) -D__SWITCH__ `sdl2-config --cflags`

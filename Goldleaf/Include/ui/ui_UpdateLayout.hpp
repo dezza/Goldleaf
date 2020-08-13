@@ -1,3 +1,4 @@
+#ifdef ENABLE_ui
 
 /*
 
@@ -37,3 +38,4 @@ namespace ui
             pu::ui::elm::ProgressBar::Ref downloadBar;
     };
 }
+#endif
