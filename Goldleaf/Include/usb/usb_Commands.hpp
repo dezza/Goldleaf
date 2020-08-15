@@ -1,3 +1,4 @@
+#ifdef ENABLE_usb
 
 /*
 
@@ -209,3 +210,4 @@ namespace usb
         return rc;
     }
 }
+#endif

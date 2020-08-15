@@ -1,3 +1,4 @@
+#ifdef ENABLE_usb
 
 /*
 
@@ -207,3 +208,4 @@ namespace fs
         // Non-HOS operating systems don't handle archive bit for what we want, so :P
     }
 }
+#endif

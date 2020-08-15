@@ -1,3 +1,4 @@
+#ifdef ENABLE_fs
 
 /*
 
@@ -49,3 +50,4 @@ namespace fs
             virtual void SetArchiveBit(String Path) override;
     };
 }
+#endif

@@ -77,16 +77,16 @@ namespace ui
         }
         this->ChangePartitionExplorer(exp, Update);
     }
-    
+#ifdef ENABLE_usb    
     void PartitionBrowserLayout::ChangePartitionPCDrive(String Mount, bool Update)
     {
         this->ChangePartitionExplorer(fs::GetRemotePCExplorer(Mount), Update);
     }
-
     void PartitionBrowserLayout::ChangePartitionUSBDrive(drive::Drive drv, bool Update)
     {
         this->ChangePartitionExplorer(fs::GetUSBDriveExplorer(drv), Update);
     }
+#endif
 
     void PartitionBrowserLayout::UpdateElements(int Idx)
     {
@@ -142,6 +142,7 @@ namespace ui
         }
     }
 
+#ifdef ENABLE_usb
     void PartitionBrowserLayout::HandleFileDirectly(String Path)
     {
         auto dir = fs::GetBaseDirectory(Path);
@@ -159,7 +160,7 @@ namespace ui
         this->browseMenu->SetSelectedIndex(idx);
         fsItems_Click(fname);
     }
-
+#endif
     bool PartitionBrowserLayout::GoBack()
     {
         return this->gexp->NavigateBack();

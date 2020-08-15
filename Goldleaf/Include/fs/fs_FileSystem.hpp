@@ -23,7 +23,9 @@
 #include <fs/fs_Common.hpp>
 #include <fs/fs_Explorer.hpp>
 #include <fs/fs_FspExplorers.hpp>
+#ifdef ENABLE_usb
 #include <fs/fs_RemotePCExplorer.hpp>
+#endif
 #include <fs/fs_StdExplorer.hpp>
 
 namespace fs
@@ -33,8 +35,10 @@ namespace fs
     NANDExplorer *GetNANDSafeExplorer();
     NANDExplorer *GetNANDUserExplorer();
     NANDExplorer *GetNANDSystemExplorer();
+#ifdef ENABLE_usb
     RemotePCExplorer *GetRemotePCExplorer(String MountName);
     USBDriveExplorer *GetUSBDriveExplorer(drive::Drive drive);
+#endif
     Explorer *GetExplorerForMountName(String MountName);
     Explorer *GetExplorerForPath(String Path);
 }

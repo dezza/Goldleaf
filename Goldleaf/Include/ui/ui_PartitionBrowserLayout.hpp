@@ -34,8 +34,10 @@ namespace ui
             void ChangePartitionExplorer(fs::Explorer *exp, bool Update = true);
             void ChangePartitionSdCard(bool Update = true);
             void ChangePartitionNAND(fs::Partition Partition, bool Update = true);
+#ifdef ENABLE_usb
             void ChangePartitionPCDrive(String Mount, bool Update = true);
             void ChangePartitionUSBDrive(drive::Drive drv, bool Update = true);
+#endif
             void UpdateElements(int Idx = 0);
             void HandleFileDirectly(String Path);
             bool GoBack();

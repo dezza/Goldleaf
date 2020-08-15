@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_usb
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -104,3 +104,4 @@ namespace ui
         if(R_SUCCEEDED(rc)) global_app->GetBrowserLayout()->HandleFileDirectly(selfile);
     }
 }
+#endif

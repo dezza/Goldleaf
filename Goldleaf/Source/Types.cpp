@@ -20,7 +20,9 @@
 */
 
 #include <fs/fs_FileSystem.hpp>
+#ifdef ENABLE_usb
 #include <usb/usb_Detail.hpp>
+#endif
 #include <es/es_Service.hpp>
 
 extern char **__system_argv;
@@ -217,11 +219,15 @@ Result Initialize()
     R_TRY(psmInitialize());
     R_TRY(setInitialize());
     R_TRY(setsysInitialize());
+#ifdef ENABLE_usb
     R_TRY(usb::detail::Initialize());
+#endif
     R_TRY(nifmInitialize(NifmServiceType_Admin));
     R_TRY(pdmqryInitialize());
 
+#ifdef ENABLE_usb
     if(drive::IsFspUsbAccessible()) R_TRY(drive::Initialize());
+#endif
 
     return 0;
 }
@@ -262,7 +268,9 @@ void Exit(Result rc)
     delete prif;
     delete sdcd;
 
+#ifdef ENABLE_usb
     usb::detail::Exit();
+#endif
     setsysExit();
     setExit();
     psmExit();

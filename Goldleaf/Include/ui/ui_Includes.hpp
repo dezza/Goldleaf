@@ -36,4 +36,6 @@
 #include <nsp/nsp_Builder.hpp>
 #include <cfg/cfg_Strings.hpp>
 #include <ui/ui_Utils.hpp>
+#ifdef ENABLE_usb
 #include <usb/usb_Commands.hpp>
+#endif

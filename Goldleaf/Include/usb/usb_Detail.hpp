@@ -1,3 +1,4 @@
+#ifdef ENABLE_usb
 
 /*
 
@@ -36,3 +37,4 @@ namespace usb::detail
     Result Read(void *buf, size_t size);
     Result Write(void *buf, size_t size);
 }
+#endif

@@ -107,8 +107,10 @@ namespace ui
         this->copy = CopyLayout::New();
         this->exploreMenu = ExploreMenuLayout::New();
         this->exploreMenu->SetOnInput(std::bind(&MainApplication::exploreMenu_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#ifdef ENABLE_usb
         this->pcExplore = PCExploreLayout::New();
         this->pcExplore->SetOnInput(std::bind(&MainApplication::pcExplore_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
         this->nspInstall = InstallLayout::New();
         this->contentInformation = ContentInformationLayout::New();
         this->contentInformation->SetOnInput(std::bind(&MainApplication::contentInformation_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -136,7 +138,9 @@ namespace ui
         MAINAPP_MENU_SET_BASE(this->mainMenu);
         MAINAPP_MENU_SET_BASE(this->browser);
         MAINAPP_MENU_SET_BASE(this->exploreMenu);
+#ifdef ENABLE_usb
         MAINAPP_MENU_SET_BASE(this->pcExplore);
+#endif
         MAINAPP_MENU_SET_BASE(this->fileContent);
         MAINAPP_MENU_SET_BASE(this->copy);
         MAINAPP_MENU_SET_BASE(this->nspInstall);
@@ -213,8 +217,10 @@ namespace ui
             this->pretime = dtime;
         }
         if(this->vfirst) this->vfirst = false;
+#ifdef ENABLE_usb
         this->hasusb = usb::detail::IsStateOk();
         this->usbImage->SetVisible(this->hasusb);
+#endif
         u32 connstr = 0;
 #ifdef ENABLE_net
         Result rc = nifmGetInternetConnectionStatus(nullptr, &connstr, nullptr);
@@ -380,6 +386,7 @@ namespace ui
         if(down & KEY_B) this->ReturnToMainMenu();
     }
 
+#ifdef ENABLE_usb
     void MainApplication::pcExplore_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B)
@@ -389,7 +396,7 @@ namespace ui
             this->LoadLayout(this->exploreMenu);
         }
     }
-
+#endif
     void MainApplication::fileContent_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B) this->LoadLayout(this->browser);
@@ -505,12 +512,12 @@ namespace ui
     {
         return this->exploreMenu;
     }
-
+#ifdef ENABLE_usb
     PCExploreLayout::Ref &MainApplication::GetPCExploreLayout()
     {
         return this->pcExplore;
     }
-
+#endif
     InstallLayout::Ref &MainApplication::GetInstallLayout()
     {
         return this->nspInstall;

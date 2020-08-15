@@ -31,8 +31,10 @@ namespace fs
     static NANDExplorer *ensf = nullptr;
     static NANDExplorer *enus = nullptr;
     static NANDExplorer *enss = nullptr;
+#ifdef ENABLE_usb
     static RemotePCExplorer *epcdrv = nullptr;
     static USBDriveExplorer *eusbdrv = nullptr;
+#endif
 
     SdCardExplorer *GetSdCardExplorer()
     {
@@ -64,6 +66,7 @@ namespace fs
         return enss;
     }
 
+#ifdef ENABLE_usb
     RemotePCExplorer *GetRemotePCExplorer(String MountName)
     {
         String mname = fs::GetPathRoot(MountName);
@@ -108,7 +111,7 @@ namespace fs
         }
         return eusbdrv;
     }
-
+#endif
     Explorer *GetExplorerForMountName(String MountName)
     {
         if(esdc != nullptr) if(esdc->GetMountName() == MountName) return esdc;
@@ -116,8 +119,10 @@ namespace fs
         if(ensf != nullptr) if(ensf->GetMountName() == MountName) return ensf;
         if(enus != nullptr) if(enus->GetMountName() == MountName) return enus;
         if(enss != nullptr) if(enss->GetMountName() == MountName) return enss;
+#ifdef ENABLE_usb
         if(epcdrv != nullptr) if(epcdrv->GetMountName() == MountName) return epcdrv;
         if(eusbdrv != nullptr) if(eusbdrv->GetMountName() == MountName) return eusbdrv;
+#endif
         auto &mounted_exps = global_app->GetExploreMenuLayout()->GetMountedExplorers();
         for(auto exp: mounted_exps)
         {

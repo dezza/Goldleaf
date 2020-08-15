@@ -1,3 +1,4 @@
+#ifdef ENABLE_usb
 
 /*
 
@@ -288,3 +289,4 @@ namespace usb
         operator delete[](alignbuf, std::align_val_t(0x1000));
     }
 }
+#endif

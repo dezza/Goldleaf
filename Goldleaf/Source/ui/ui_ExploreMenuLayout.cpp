@@ -51,6 +51,7 @@ namespace ui
         this->sdCardMenuItem->SetIcon(global_settings.PathForResource("/Common/SdCard.png"));
         this->sdCardMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->sdCardMenuItem->AddOnClick(std::bind(&ExploreMenuLayout::sdCard_Click, this));
+#ifdef ENABLE_usb
         this->pcDriveMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(279));
         this->pcDriveMenuItem->SetIcon(global_settings.PathForResource("/Common/Drive.png"));
         this->pcDriveMenuItem->SetColor(global_settings.custom_scheme.Text);
@@ -59,6 +60,7 @@ namespace ui
         this->usbDriveMenuItem->SetIcon(global_settings.PathForResource("/Common/Drive.png"));
         this->usbDriveMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->usbDriveMenuItem->AddOnClick(std::bind(&ExploreMenuLayout::usbDrive_Click, this));
+#endif
         this->nandProfInfoFMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(20) + " (PRODINFOF)");
         this->nandProfInfoFMenuItem->SetIcon(global_settings.PathForResource("/Common/NAND.png"));
         this->nandProfInfoFMenuItem->SetColor(global_settings.custom_scheme.Text);
@@ -76,8 +78,10 @@ namespace ui
         this->nandSystemMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->nandSystemMenuItem->AddOnClick(std::bind(&ExploreMenuLayout::nandSystem_Click, this));
         this->mountsMenu->AddItem(this->sdCardMenuItem);
+#ifdef ENABLE_usb
         this->mountsMenu->AddItem(this->pcDriveMenuItem);
         this->mountsMenu->AddItem(this->usbDriveMenuItem);
+#endif
         this->mountsMenu->AddItem(this->nandProfInfoFMenuItem);
         this->mountsMenu->AddItem(this->nandSafeMenuItem);
         this->mountsMenu->AddItem(this->nandUserMenuItem);
@@ -95,7 +99,7 @@ namespace ui
         global_app->LoadMenuData(cfg::strings::Main.GetString(19), "SdCard", global_app->GetBrowserLayout()->GetExplorer()->GetPresentableCwd());
         global_app->LoadLayout(global_app->GetBrowserLayout());
     }
-
+#ifdef ENABLE_usb
     void ExploreMenuLayout::pcDrive_Click()
     {
         if(!usb::detail::IsStateOk())
@@ -131,7 +135,7 @@ namespace ui
             }
         }
     }
-
+#endif
     void ExploreMenuLayout::nandProdInfoF_Click()
     {
         global_app->GetBrowserLayout()->ChangePartitionNAND(fs::Partition::PRODINFOF);
