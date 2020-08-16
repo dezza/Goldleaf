@@ -1,3 +1,4 @@
+#ifdef ENABLE_nsp
 
 /*
 
@@ -28,3 +29,4 @@ namespace nsp
 {
     bool GenerateFrom(String Input, String Out, std::function<void(u64, u64)> Callback);
 }
+#endif

@@ -104,6 +104,8 @@ namespace ui
 
     void SettingsLayout::optsFirmware_Click()
     {
+// For some reason the hos lib is included via /nsp, probably same format
+#ifdef ENABLE_nsp
         SetSysFirmwareVersion fwver = {};
         setsysGetFirmwareVersion(&fwver);
         String msg = cfg::strings::Main.GetString(362) + ":\n";
@@ -141,6 +143,7 @@ namespace ui
             }
         }
         else if(sopt == 3) this->HandleUpdate("Contents/placehld", pendfwver);
+#endif
     }
 
     void SettingsLayout::optsMemory_Click()

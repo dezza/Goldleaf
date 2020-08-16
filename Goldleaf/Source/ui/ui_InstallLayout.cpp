@@ -41,6 +41,7 @@ namespace ui
 
     void InstallLayout::StartInstall(String Path, fs::Explorer *Exp, Storage Location, bool OmitConfirmation)
     {
+#ifdef ENABLE_nsp
         nsp::Installer inst(Path, Exp, Location);
 
         auto rc = inst.PrepareInstallation();
@@ -265,5 +266,6 @@ namespace ui
         global_app->CallForRender();
         if(R_FAILED(rc)) HandleResult(rc, cfg::strings::Main.GetString(251));
         else if(doinstall) global_app->ShowNotification(cfg::strings::Main.GetString(150));
+#endif
     }
 }

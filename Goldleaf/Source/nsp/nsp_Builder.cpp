@@ -1,3 +1,4 @@
+#ifdef ENABLE_nsp
 
 /*
 
@@ -87,3 +88,4 @@ namespace nsp
         return true;
     }
 }
+#endif

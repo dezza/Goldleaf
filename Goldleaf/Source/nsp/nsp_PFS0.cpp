@@ -1,3 +1,4 @@
+#ifdef ENABLE_nsp
 
 /*
 
@@ -154,3 +155,4 @@ namespace nsp
         return idx;
     }
 }
+#endif

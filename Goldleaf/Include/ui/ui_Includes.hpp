@@ -29,10 +29,14 @@
 #include <hos/hos_Titles.hpp>
 #include <hos/hos_Common.hpp>
 #include <ncm/ncm_Types.hpp>
+#ifdef ENABLE_net
 #include <net/net_Network.hpp>
+#endif
 #include <nfp/nfp_Amiibo.hpp>
 #include <ns/ns_Service.hpp>
+#ifdef ENABLE_nsp
 #include <nsp/nsp_Installer.hpp>
+#endif
 #include <nsp/nsp_Builder.hpp>
 #include <cfg/cfg_Strings.hpp>
 #include <ui/ui_Utils.hpp>

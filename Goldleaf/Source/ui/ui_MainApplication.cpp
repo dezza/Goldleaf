@@ -111,7 +111,9 @@ namespace ui
         this->pcExplore = PCExploreLayout::New();
         this->pcExplore->SetOnInput(std::bind(&MainApplication::pcExplore_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 #endif
+#ifdef ENABLE_nsp
         this->nspInstall = InstallLayout::New();
+#endif
         this->contentInformation = ContentInformationLayout::New();
         this->contentInformation->SetOnInput(std::bind(&MainApplication::contentInformation_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->storageContents = StorageContentsLayout::New();
@@ -145,7 +147,9 @@ namespace ui
 #endif
         MAINAPP_MENU_SET_BASE(this->fileContent);
         MAINAPP_MENU_SET_BASE(this->copy);
+#ifdef ENABLE_nsp
         MAINAPP_MENU_SET_BASE(this->nspInstall);
+#endif
         MAINAPP_MENU_SET_BASE(this->contentInformation);
         MAINAPP_MENU_SET_BASE(this->storageContents);
         MAINAPP_MENU_SET_BASE(this->contentManager);
@@ -522,10 +526,12 @@ namespace ui
         return this->pcExplore;
     }
 #endif
+#ifdef ENABLE_nsp
     InstallLayout::Ref &MainApplication::GetInstallLayout()
     {
         return this->nspInstall;
     }
+#endif
     ContentInformationLayout::Ref &MainApplication::GetContentInformationLayout()
     {
         return this->contentInformation;

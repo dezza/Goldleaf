@@ -251,6 +251,7 @@ namespace ui
                 switch(sopt)
                 {
                     case 0:
+#ifdef ENABLE_nsp
                         sopt = global_app->CreateShowDialog(cfg::strings::Main.GetString(77), cfg::strings::Main.GetString(78), { cfg::strings::Main.GetString(19), cfg::strings::Main.GetString(79), cfg::strings::Main.GetString(18) }, true);
                         if(sopt < 0) return;
                         Storage dst = Storage::SdCard;
@@ -268,6 +269,7 @@ namespace ui
                         global_app->GetInstallLayout()->StartInstall(fullitm, this->gexp, dst);
                         global_app->LoadLayout(global_app->GetBrowserLayout());
                         global_app->LoadMenuHead(this->gexp->GetPresentableCwd());
+#endif
                         break;
                 }
             }
@@ -551,6 +553,7 @@ namespace ui
                             Storage dst = Storage::SdCard;
                             if(sopt == 0) dst = Storage::SdCard;
                             else if(sopt == 1) dst = Storage::NANDUser;
+#ifdef ENABLE_nsp
                             for(auto &nsp_path: nsps)
                             {
                                 auto nsp = fullitm + "/" + nsp_path;
@@ -568,6 +571,7 @@ namespace ui
                                 global_app->GetInstallLayout()->StartInstall(nsp, this->gexp, dst, true);
                                 global_app->LoadLayout(global_app->GetBrowserLayout());
                             }
+#endif
                             global_app->LoadMenuHead(this->gexp->GetPresentableCwd());
                             break;
                     }

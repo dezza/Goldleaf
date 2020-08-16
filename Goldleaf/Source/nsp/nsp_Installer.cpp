@@ -1,3 +1,4 @@
+#ifdef ENABLE_nsp
 
 /*
 
@@ -343,3 +344,4 @@ namespace nsp
         nand_sys_explorer->DeleteDirectory("Contents/temp");
     }
 }
+#endif

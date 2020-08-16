@@ -114,7 +114,9 @@ namespace ui
             CopyLayout::Ref copy;
             ExploreMenuLayout::Ref exploreMenu;
             PCExploreLayout::Ref pcExplore;
+#ifdef ENABLE_nsp
             InstallLayout::Ref nspInstall;
+#endif
             ContentInformationLayout::Ref contentInformation;
             StorageContentsLayout::Ref storageContents;
             ContentManagerLayout::Ref contentManager;

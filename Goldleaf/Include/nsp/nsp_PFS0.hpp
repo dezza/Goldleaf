@@ -1,3 +1,4 @@
+#ifdef ENABLE_nsp
 
 /*
 
@@ -62,3 +63,4 @@ namespace nsp
             bool ok;
     };
 }
+#endif

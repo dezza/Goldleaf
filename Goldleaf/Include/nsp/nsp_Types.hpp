@@ -1,3 +1,4 @@
+#ifdef ENABLE_nsp
 
 /*
 
@@ -48,3 +49,4 @@ namespace nsp
 
     static constexpr u32 Magic = 0x30534650;
 }
+#endif
