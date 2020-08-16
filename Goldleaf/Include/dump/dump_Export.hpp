@@ -1,3 +1,4 @@
+#ifdef ENABLE_dump
 
 /*
 
@@ -40,3 +41,4 @@ namespace dump
     String GetNCAIdPath(NcmContentStorage *st, NcmContentId *Id);
     bool GetNCAId(NcmContentMetaDatabase *cmdb, NcmContentMetaKey *rec, u64 ApplicationId, NCAType Type, NcmContentId *out);
 }
+#endif

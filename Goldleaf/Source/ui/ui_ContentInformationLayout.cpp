@@ -166,8 +166,10 @@ namespace ui
             if(sopt < 0) return;
             if(sopt == 0)
             {
+#ifdef ENABLE_dump
                 global_app->LoadLayout(global_app->GetTitleDumperLayout());
                 global_app->GetTitleDumperLayout()->StartDump(cnt, hastik);
+#endif
                 global_app->ReturnToMainMenu();
             }
         }

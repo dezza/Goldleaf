@@ -1,3 +1,4 @@
+#ifdef ENABLE_dump
 
 /*
 
@@ -213,3 +214,4 @@ namespace dump
         return R_SUCCEEDED(rc);
     }
 }
+#endif

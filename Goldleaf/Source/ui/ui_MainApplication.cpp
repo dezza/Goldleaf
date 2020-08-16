@@ -118,7 +118,9 @@ namespace ui
         this->storageContents->SetOnInput(std::bind(&MainApplication::storageContents_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->contentManager = ContentManagerLayout::New();
         this->contentManager->SetOnInput(std::bind(&MainApplication::contentManager_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#ifdef ENABLE_dump
         this->titleDump = TitleDumperLayout::New();
+#endif
         this->unusedTickets = UnusedTicketsLayout::New();
         this->unusedTickets->SetOnInput(std::bind(&MainApplication::unusedTickets_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->account = AccountLayout::New();
@@ -147,7 +149,9 @@ namespace ui
         MAINAPP_MENU_SET_BASE(this->contentInformation);
         MAINAPP_MENU_SET_BASE(this->storageContents);
         MAINAPP_MENU_SET_BASE(this->contentManager);
+#ifdef ENABLE_dump
         MAINAPP_MENU_SET_BASE(this->titleDump);
+#endif
         MAINAPP_MENU_SET_BASE(this->unusedTickets);
         MAINAPP_MENU_SET_BASE(this->account);
         MAINAPP_MENU_SET_BASE(this->amiibo);
@@ -522,7 +526,6 @@ namespace ui
     {
         return this->nspInstall;
     }
-
     ContentInformationLayout::Ref &MainApplication::GetContentInformationLayout()
     {
         return this->contentInformation;
@@ -537,12 +540,12 @@ namespace ui
     {
         return this->contentManager;
     }
-
+#ifdef ENABLE_dump
     TitleDumperLayout::Ref &MainApplication::GetTitleDumperLayout()
     {
         return this->titleDump;
     }
-
+#endif
     UnusedTicketsLayout::Ref &MainApplication::GetUnusedTicketsLayout()
     {
         return this->unusedTickets;

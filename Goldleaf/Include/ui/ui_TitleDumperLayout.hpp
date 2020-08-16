@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_dump
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -37,3 +37,4 @@ namespace ui
             pu::ui::elm::ProgressBar::Ref ncaBar;
     };
 }
+#endif

@@ -36,7 +36,9 @@
 #include <ui/ui_SettingsLayout.hpp>
 #include <ui/ui_StorageContentsLayout.hpp>
 #include <ui/ui_UnusedTicketsLayout.hpp>
+#ifdef ENABLE_dump
 #include <ui/ui_TitleDumperLayout.hpp>
+#endif
 #include <ui/ui_UpdateLayout.hpp>
 #include <ui/ui_WebBrowserLayout.hpp>
 
@@ -86,7 +88,9 @@ namespace ui
             ContentInformationLayout::Ref &GetContentInformationLayout();
             StorageContentsLayout::Ref &GetStorageContentsLayout();
             ContentManagerLayout::Ref &GetContentManagerLayout();
+#ifdef ENABLE_dump
             TitleDumperLayout::Ref &GetTitleDumperLayout();
+#endif
             UnusedTicketsLayout::Ref &GetUnusedTicketsLayout();
             AccountLayout::Ref &GetAccountLayout();
             AmiiboDumpLayout::Ref &GetAmiiboDumpLayout();
@@ -114,7 +118,9 @@ namespace ui
             ContentInformationLayout::Ref contentInformation;
             StorageContentsLayout::Ref storageContents;
             ContentManagerLayout::Ref contentManager;
+#ifdef ENABLE_dump
             TitleDumperLayout::Ref titleDump;
+#endif
             UnusedTicketsLayout::Ref unusedTickets;
             AccountLayout::Ref account;
             AmiiboDumpLayout::Ref amiibo;

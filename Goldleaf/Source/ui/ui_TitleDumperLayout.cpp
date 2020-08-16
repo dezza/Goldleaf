@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_dump
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -324,3 +324,4 @@ namespace ui
         serviceClose(&cmdb.s);
     }
 }
+#endif
