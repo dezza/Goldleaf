@@ -22,7 +22,9 @@
 #pragma once
 #include <ui/ui_AboutLayout.hpp>
 #include <ui/ui_AccountLayout.hpp>
+#ifdef ENABLE_nfp
 #include <ui/ui_AmiiboDumpLayout.hpp>
+#endif
 #include <ui/ui_ContentInformationLayout.hpp>
 #include <ui/ui_ContentManagerLayout.hpp>
 #include <ui/ui_CopyLayout.hpp>
@@ -39,7 +41,9 @@
 #ifdef ENABLE_dump
 #include <ui/ui_TitleDumperLayout.hpp>
 #endif
+#ifdef ENABLE_net
 #include <ui/ui_UpdateLayout.hpp>
+#endif
 #include <ui/ui_WebBrowserLayout.hpp>
 
 #include <ui/ui_ClickableImage.hpp>
@@ -69,7 +73,9 @@ namespace ui
             void contentManager_Input(u64 down, u64 up, u64 held);
             void unusedTickets_Input(u64 down, u64 up, u64 held);
             void account_Input(u64 down, u64 up, u64 held);
+#ifdef ENABLE_nfp
             void amiibo_Input(u64 down, u64 up, u64 held);
+#endif
             void settings_Input(u64 down, u64 up, u64 held);
             void memory_Input(u64 down, u64 up, u64 held);
             void webBrowser_Input(u64 down, u64 up, u64 held);
@@ -93,10 +99,14 @@ namespace ui
 #endif
             UnusedTicketsLayout::Ref &GetUnusedTicketsLayout();
             AccountLayout::Ref &GetAccountLayout();
+#ifdef ENABLE_nfp
             AmiiboDumpLayout::Ref &GetAmiiboDumpLayout();
+#endif
             SettingsLayout::Ref &GetSettingsLayout();
             MemoryLayout::Ref &GetMemoryLayout();
+#ifdef ENABLE_net
             UpdateLayout::Ref &GetUpdateLayout();
+#endif
             WebBrowserLayout::Ref &GetWebBrowserLayout();
             AboutLayout::Ref &GetAboutLayout();
             
@@ -125,10 +135,14 @@ namespace ui
 #endif
             UnusedTicketsLayout::Ref unusedTickets;
             AccountLayout::Ref account;
+#ifdef ENABLE_nfp
             AmiiboDumpLayout::Ref amiibo;
+#endif
             SettingsLayout::Ref settings;
             MemoryLayout::Ref memory;
+#ifdef ENABLE_net
             UpdateLayout::Ref update;
+#endif
             WebBrowserLayout::Ref webBrowser;
             AboutLayout::Ref about;
             pu::ui::elm::Image::Ref baseImage;

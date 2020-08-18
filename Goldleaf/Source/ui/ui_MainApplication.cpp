@@ -127,13 +127,17 @@ namespace ui
         this->unusedTickets->SetOnInput(std::bind(&MainApplication::unusedTickets_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->account = AccountLayout::New();
         this->account->SetOnInput(std::bind(&MainApplication::account_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#ifdef ENABLE_nfp
         this->amiibo = AmiiboDumpLayout::New();
         this->amiibo->SetOnInput(std::bind(&MainApplication::amiibo_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
         this->settings = SettingsLayout::New();
         this->settings->SetOnInput(std::bind(&MainApplication::settings_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->memory = MemoryLayout::New();
         this->memory->SetOnInput(std::bind(&MainApplication::memory_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#ifdef ENABLE_net
         this->update = UpdateLayout::New();
+#endif
         this->webBrowser = WebBrowserLayout::New();
         this->webBrowser->SetOnInput(std::bind(&MainApplication::webBrowser_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->about = AboutLayout::New();
@@ -158,10 +162,14 @@ namespace ui
 #endif
         MAINAPP_MENU_SET_BASE(this->unusedTickets);
         MAINAPP_MENU_SET_BASE(this->account);
+#ifdef ENABLE_nfp
         MAINAPP_MENU_SET_BASE(this->amiibo);
+#endif
         MAINAPP_MENU_SET_BASE(this->settings);
         MAINAPP_MENU_SET_BASE(this->memory);
+#ifdef ENABLE_net
         MAINAPP_MENU_SET_BASE(this->update);
+#endif
         MAINAPP_MENU_SET_BASE(this->webBrowser);
         MAINAPP_MENU_SET_BASE(this->about);
 
@@ -445,10 +453,12 @@ namespace ui
         if(down & KEY_B) this->ReturnToMainMenu();
     }
 
+#ifdef ENABLE_nfp
     void MainApplication::amiibo_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B) this->ReturnToMainMenu();
     }
+#endif
 
     void MainApplication::settings_Input(u64 down, u64 up, u64 held)
     {
@@ -562,10 +572,12 @@ namespace ui
         return this->account;
     }
 
+#ifdef ENABLE_nfp
     AmiiboDumpLayout::Ref &MainApplication::GetAmiiboDumpLayout()
     {
         return this->amiibo;
     }
+#endif
 
     SettingsLayout::Ref &MainApplication::GetSettingsLayout()
     {
@@ -577,10 +589,12 @@ namespace ui
         return this->memory;
     }
 
+#ifdef ENABLE_net
     UpdateLayout::Ref &MainApplication::GetUpdateLayout()
     {
         return this->update;
     }
+#endif
 
     WebBrowserLayout::Ref &MainApplication::GetWebBrowserLayout()
     {

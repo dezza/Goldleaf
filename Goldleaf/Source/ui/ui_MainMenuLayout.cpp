@@ -48,18 +48,22 @@ namespace ui
         this->accountMenuItem->SetIcon(global_settings.PathForResource("/Common/Accounts.png"));
         this->accountMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->accountMenuItem->AddOnClick(std::bind(&MainMenuLayout::accountMenuItem_Click, this));
+#ifdef ENABLE_nfp
         this->amiiboMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(283));
         this->amiiboMenuItem->SetIcon(global_settings.PathForResource("/Common/Amiibo.png"));
         this->amiiboMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->amiiboMenuItem->AddOnClick(std::bind(&MainMenuLayout::amiiboMenuItem_Click, this));
+#endif
         this->settingsMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(375));
         this->settingsMenuItem->SetIcon(global_settings.PathForResource("/Common/Settings.png"));
         this->settingsMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->settingsMenuItem->AddOnClick(std::bind(&MainMenuLayout::settingsMenuItem_Click, this));
+#ifdef ENABLE_net
         this->updateMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(284));
         this->updateMenuItem->SetIcon(global_settings.PathForResource("/Common/Update.png"));
         this->updateMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->updateMenuItem->AddOnClick(std::bind(&MainMenuLayout::updateMenuItem_Click, this));
+#endif
         this->aboutMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(8));
         this->aboutMenuItem->SetIcon(global_settings.PathForResource("/Common/Info.png"));
         this->aboutMenuItem->SetColor(global_settings.custom_scheme.Text);
@@ -68,9 +72,13 @@ namespace ui
         this->optionMenu->AddItem(this->titleMenuItem);
         this->optionMenu->AddItem(this->webMenuItem);
         this->optionMenu->AddItem(this->accountMenuItem);
+#ifdef ENABLE_nfp
         this->optionMenu->AddItem(this->amiiboMenuItem);
+#endif
         this->optionMenu->AddItem(this->settingsMenuItem);
+#ifdef ENABLE_net
         this->optionMenu->AddItem(this->updateMenuItem);
+#endif
         this->optionMenu->AddItem(this->aboutMenuItem);
         this->Add(this->optionMenu);
     }
@@ -114,6 +122,7 @@ namespace ui
         global_app->LoadLayout(global_app->GetAccountLayout());
     }
 
+#ifdef ENABLE_nfp
     void MainMenuLayout::amiiboMenuItem_Click()
     {
         global_app->LoadMenuData(cfg::strings::Main.GetString(283), "Amiibo", cfg::strings::Main.GetString(301));
@@ -121,6 +130,7 @@ namespace ui
         global_app->GetAmiiboDumpLayout()->StartDump();
         global_app->ReturnToMainMenu();
     }
+#endif
 
     void MainMenuLayout::settingsMenuItem_Click()
     {
@@ -128,13 +138,14 @@ namespace ui
         global_app->LoadLayout(global_app->GetSettingsLayout());
     }
 
+#ifdef ENABLE_net
     void MainMenuLayout::updateMenuItem_Click()
     {
         global_app->LoadMenuData(cfg::strings::Main.GetString(284), "Update", cfg::strings::Main.GetString(302));
         global_app->LoadLayout(global_app->GetUpdateLayout());
         global_app->GetUpdateLayout()->StartUpdateSearch();
     }
-
+#endif
     void MainMenuLayout::aboutMenuItem_Click()
     {
         String exmode = cfg::strings::Main.GetString(288);

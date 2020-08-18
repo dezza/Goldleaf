@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_nfp
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -68,3 +68,4 @@ namespace ui
         nfp::Exit();
     }
 }
+#endif
