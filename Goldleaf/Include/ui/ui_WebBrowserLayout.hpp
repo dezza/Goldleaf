@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_web
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -38,3 +38,4 @@ namespace ui
             pu::ui::elm::Menu::Ref optionsMenu;
     };
 }
+#endif

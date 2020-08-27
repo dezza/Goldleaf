@@ -48,7 +48,9 @@
 #ifdef ENABLE_net
 #include <ui/ui_UpdateLayout.hpp>
 #endif
+#ifdef ENABLE_web
 #include <ui/ui_WebBrowserLayout.hpp>
+#endif
 
 #include <ui/ui_ClickableImage.hpp>
 
@@ -86,7 +88,9 @@ namespace ui
 #endif
             void settings_Input(u64 down, u64 up, u64 held);
             void memory_Input(u64 down, u64 up, u64 held);
+#ifdef ENABLE_web
             void webBrowser_Input(u64 down, u64 up, u64 held);
+#endif
             void about_Input(u64 down, u64 up, u64 held);
 #ifdef ENABLE_acc
             void userImage_OnClick();
@@ -125,7 +129,9 @@ namespace ui
 #ifdef ENABLE_net
             UpdateLayout::Ref &GetUpdateLayout();
 #endif
+#ifdef ENABLE_web
             WebBrowserLayout::Ref &GetWebBrowserLayout();
+#endif
             AboutLayout::Ref &GetAboutLayout();
             
         private:
@@ -167,7 +173,9 @@ namespace ui
 #ifdef ENABLE_net
             UpdateLayout::Ref update;
 #endif
+#ifdef ENABLE_web
             WebBrowserLayout::Ref webBrowser;
+#endif
             AboutLayout::Ref about;
             pu::ui::elm::Image::Ref baseImage;
             pu::ui::elm::TextBlock::Ref timeText;

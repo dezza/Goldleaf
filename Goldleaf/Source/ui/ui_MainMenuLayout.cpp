@@ -42,10 +42,12 @@ namespace ui
         this->titleMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->titleMenuItem->AddOnClick(std::bind(&MainMenuLayout::titleMenuItem_Click, this));
 #endif
+#ifdef ENABLE_web
         this->webMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(5));
         this->webMenuItem->SetIcon(global_settings.PathForResource("/Common/Browser.png"));
         this->webMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->webMenuItem->AddOnClick(std::bind(&MainMenuLayout::webMenuItem_Click, this));
+#endif
 #ifdef ENABLE_acc
         this->accountMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(6));
         this->accountMenuItem->SetIcon(global_settings.PathForResource("/Common/Accounts.png"));
@@ -76,7 +78,9 @@ namespace ui
 #ifdef ENABLE_ncm
         this->optionMenu->AddItem(this->titleMenuItem);
 #endif
+#ifdef ENABLE_web
         this->optionMenu->AddItem(this->webMenuItem);
+#endif
 #ifdef ENABLE_acc
         this->optionMenu->AddItem(this->accountMenuItem);
 #endif
@@ -107,12 +111,14 @@ namespace ui
     }
 #endif
 
+#ifdef ENABLE_web
     void MainMenuLayout::webMenuItem_Click()
     {
         global_app->LoadMenuData(cfg::strings::Main.GetString(36), "Browser", cfg::strings::Main.GetString(14));
         global_app->GetWebBrowserLayout()->Refresh();
         global_app->LoadLayout(global_app->GetWebBrowserLayout());
     }
+#endif
 
 #ifdef ENABLE_acc
     void MainMenuLayout::accountMenuItem_Click()

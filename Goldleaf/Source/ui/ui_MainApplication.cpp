@@ -148,8 +148,10 @@ namespace ui
 #ifdef ENABLE_net
         this->update = UpdateLayout::New();
 #endif
+#ifdef ENABLE_web
         this->webBrowser = WebBrowserLayout::New();
         this->webBrowser->SetOnInput(std::bind(&MainApplication::webBrowser_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
         this->about = AboutLayout::New();
         this->about->SetOnInput(std::bind(&MainApplication::about_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
@@ -186,7 +188,9 @@ namespace ui
 #ifdef ENABLE_net
         MAINAPP_MENU_SET_BASE(this->update);
 #endif
+#ifdef ENABLE_web
         MAINAPP_MENU_SET_BASE(this->webBrowser);
+#endif
         MAINAPP_MENU_SET_BASE(this->about);
 
         // Special extras
@@ -494,12 +498,12 @@ namespace ui
             this->LoadLayout(this->settings);
         }
     }
-
+#ifdef ENABLE_web
     void MainApplication::webBrowser_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B) this->ReturnToMainMenu();
     }
-
+#endif
     void MainApplication::about_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B) this->ReturnToMainMenu();
@@ -620,10 +624,12 @@ namespace ui
     }
 #endif
 
+#ifdef ENABLE_web
     WebBrowserLayout::Ref &MainApplication::GetWebBrowserLayout()
     {
         return this->webBrowser;
     }
+#endif
 
     AboutLayout::Ref &MainApplication::GetAboutLayout()
     {
