@@ -211,9 +211,12 @@ Result Initialize()
 {
     srand(time(nullptr));
     EnsureDirectories();
-
+#ifdef ENABLE_acc
     R_TRY(accountInitialize(AccountServiceType_Administrator));
+#endif
+#ifdef ENABLE_ncm
     R_TRY(ncmInitialize());
+#endif
     R_TRY(nsInitialize());
     R_TRY(es::Initialize());
     R_TRY(psmInitialize());
@@ -276,8 +279,12 @@ void Exit(Result rc)
     psmExit();
     es::Exit();
     nsExit();
+#ifdef ENABLE_acc
     accountExit();
+#endif
+#ifdef ENABLE_ncm
     ncmExit();
+#endif
     nifmExit();
     pdmqryExit();
     Close(rc);
