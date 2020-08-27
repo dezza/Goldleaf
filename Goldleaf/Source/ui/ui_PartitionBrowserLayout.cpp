@@ -400,6 +400,7 @@ namespace ui
                 switch(sopt)
                 {
                     case 0:
+#ifdef ENABLE_acc
                         if(!acc::HasUser()) return;
                         sopt = global_app->CreateShowDialog(cfg::strings::Main.GetString(121), cfg::strings::Main.GetString(122), { cfg::strings::Main.GetString(111), cfg::strings::Main.GetString(18) }, true);
                         if(sopt < 0) return;
@@ -414,6 +415,7 @@ namespace ui
                         if(R_SUCCEEDED(rc)) global_app->ShowNotification(cfg::strings::Main.GetString(123));
                         else HandleResult(rc, cfg::strings::Main.GetString(124));
                         delete[] iconbuf;
+#endif
                         break;
                 }
             }

@@ -55,7 +55,9 @@ namespace ui
         pu::ui::render::AddFontFile("FileContentFont", 25, global_settings.PathForResource("/FileSystem/FileContentFont.ttf"));
 
         this->preblv = 0;
+#ifdef ENABLE_acc
         this->seluser = {};
+#endif
         this->preisch = false;
         this->pretime = "";
         this->vfirst = true;
@@ -75,7 +77,9 @@ namespace ui
         this->userImage = ClickableImage::New(1090, 75, global_settings.PathForResource("/Common/User.png"));
         this->userImage->SetWidth(70);
         this->userImage->SetHeight(70);
+#ifdef ENABLE_acc
         this->userImage->SetOnClick(std::bind(&MainApplication::userImage_OnClick, this));
+#endif
         this->helpImage = ClickableImage::New(1180, 80, global_settings.PathForResource("/Common/Help.png"));
         this->helpImage->SetWidth(60);
         this->helpImage->SetHeight(60);
@@ -125,8 +129,10 @@ namespace ui
 #endif
         this->unusedTickets = UnusedTicketsLayout::New();
         this->unusedTickets->SetOnInput(std::bind(&MainApplication::unusedTickets_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#ifdef ENABLE_acc
         this->account = AccountLayout::New();
         this->account->SetOnInput(std::bind(&MainApplication::account_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
 #ifdef ENABLE_nfp
         this->amiibo = AmiiboDumpLayout::New();
         this->amiibo->SetOnInput(std::bind(&MainApplication::amiibo_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -161,7 +167,9 @@ namespace ui
         MAINAPP_MENU_SET_BASE(this->titleDump);
 #endif
         MAINAPP_MENU_SET_BASE(this->unusedTickets);
+#ifdef ENABLE_acc
         MAINAPP_MENU_SET_BASE(this->account);
+#endif
 #ifdef ENABLE_nfp
         MAINAPP_MENU_SET_BASE(this->amiibo);
 #endif
@@ -262,6 +270,7 @@ namespace ui
 #endif
         }
         else this->ipText->SetText("");
+#ifdef ENABLE_acc
         auto user = acc::GetSelectedUser();
         if(!acc::UidCompare(&user, &this->seluser))
         {
@@ -277,6 +286,7 @@ namespace ui
             this->userImage->SetWidth(70);
             this->userImage->SetHeight(70);
         }
+#endif
     }
 
     void MainApplication::ReturnToMainMenu()
@@ -448,10 +458,12 @@ namespace ui
         if(down & KEY_B) this->ReturnToMainMenu();
     }
 
+#ifdef ENABLE_acc
     void MainApplication::account_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B) this->ReturnToMainMenu();
     }
+#endif
 
 #ifdef ENABLE_nfp
     void MainApplication::amiibo_Input(u64 down, u64 up, u64 held)
@@ -484,7 +496,7 @@ namespace ui
     {
         if(down & KEY_B) this->ReturnToMainMenu();
     }
-
+#ifdef ENABLE_acc
     void MainApplication::userImage_OnClick()
     {
         if(acc::SelectUser())
@@ -493,7 +505,7 @@ namespace ui
             this->ShowNotification(cfg::strings::Main.GetString(324));
         }
     }
-
+#endif
     void MainApplication::helpImage_OnClick()
     {
         this->CreateShowDialog(cfg::strings::Main.GetString(162), cfg::strings::Main.GetString(342) + "\n\n" + cfg::strings::Main.GetString(343) + "\n" + cfg::strings::Main.GetString(344) + "\n" + cfg::strings::Main.GetString(345) + "\n" + cfg::strings::Main.GetString(346) + "\n" + cfg::strings::Main.GetString(347), {cfg::strings::Main.GetString(234)}, false);
@@ -566,12 +578,12 @@ namespace ui
     {
         return this->unusedTickets;
     }
-
+#ifdef ENABLE_acc
     AccountLayout::Ref &MainApplication::GetAccountLayout()
     {
         return this->account;
     }
-
+#endif
 #ifdef ENABLE_nfp
     AmiiboDumpLayout::Ref &MainApplication::GetAmiiboDumpLayout()
     {

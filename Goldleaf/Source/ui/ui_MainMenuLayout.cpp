@@ -44,10 +44,12 @@ namespace ui
         this->webMenuItem->SetIcon(global_settings.PathForResource("/Common/Browser.png"));
         this->webMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->webMenuItem->AddOnClick(std::bind(&MainMenuLayout::webMenuItem_Click, this));
+#ifdef ENABLE_acc
         this->accountMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(6));
         this->accountMenuItem->SetIcon(global_settings.PathForResource("/Common/Accounts.png"));
         this->accountMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->accountMenuItem->AddOnClick(std::bind(&MainMenuLayout::accountMenuItem_Click, this));
+#endif
 #ifdef ENABLE_nfp
         this->amiiboMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(283));
         this->amiiboMenuItem->SetIcon(global_settings.PathForResource("/Common/Amiibo.png"));
@@ -71,7 +73,9 @@ namespace ui
         this->optionMenu->AddItem(this->exploreMenuItem);
         this->optionMenu->AddItem(this->titleMenuItem);
         this->optionMenu->AddItem(this->webMenuItem);
+#ifdef ENABLE_acc
         this->optionMenu->AddItem(this->accountMenuItem);
+#endif
 #ifdef ENABLE_nfp
         this->optionMenu->AddItem(this->amiiboMenuItem);
 #endif
@@ -104,6 +108,7 @@ namespace ui
         global_app->LoadLayout(global_app->GetWebBrowserLayout());
     }
 
+#ifdef ENABLE_acc
     void MainMenuLayout::accountMenuItem_Click()
     {
         if(!acc::HasUser())
@@ -121,7 +126,7 @@ namespace ui
         global_app->GetAccountLayout()->Load();
         global_app->LoadLayout(global_app->GetAccountLayout());
     }
-
+#endif
 #ifdef ENABLE_nfp
     void MainMenuLayout::amiiboMenuItem_Click()
     {

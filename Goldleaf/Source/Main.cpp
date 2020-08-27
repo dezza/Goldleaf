@@ -41,8 +41,10 @@ int main()
     // Load language strings, now that romfs is initialized
     cfg::LoadStrings();
 
+#ifdef ENABLE_acc
     // Try to get a selected user if it was selected, and cache its icon if we succeed
     if(acc::SelectFromPreselectedUser()) acc::CacheSelectedUserIcon();
+#endif
 
     // Start and loop the application
     global_app->Prepare();

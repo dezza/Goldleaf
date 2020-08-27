@@ -89,6 +89,7 @@ namespace ui
         if(cnt.IsBaseTitle() && (cnt.Location != Storage::NANDSystem))
         {
             msg += "\n";
+#ifdef ENABLE_acc
             auto uid = acc::GetSelectedUser();
             hos::TitlePlayStats stats = cnt.GetGlobalPlayStats();
             if(stats.TotalPlaySeconds == 0) msg += "\n" + cfg::strings::Main.GetString(351) + "\n";
@@ -106,6 +107,7 @@ namespace ui
                 msg += "\n" + cfg::strings::Main.GetString(339) + " " + hos::FormatTime(stats.SecondsFromLastLaunched);
                 msg += "\n" + cfg::strings::Main.GetString(340) + " " + hos::FormatTime(stats.TotalPlaySeconds);
             }
+#endif
         }
         auto tiks = hos::GetAllTickets();
         bool hastik = false;
@@ -185,6 +187,7 @@ namespace ui
                 global_app->CreateShowDialog(cfg::strings::Main.GetString(408), cfg::strings::Main.GetString(410), { cfg::strings::Main.GetString(234) }, true);
                 return;
             }
+#ifdef ENABLE_acc
             if(!acc::HasUser())
             {
                 global_app->CreateShowDialog(cfg::strings::Main.GetString(408), cfg::strings::Main.GetString(411), { cfg::strings::Main.GetString(234) }, true);
@@ -207,6 +210,7 @@ namespace ui
                 global_app->ShowNotification(cfg::strings::Main.GetString(412));
             }
             else HandleResult(rc, cfg::strings::Main.GetString(413));
+#endif
         }
         else if(hastik && (sopt == 3))
         {

@@ -34,7 +34,9 @@ namespace ui
             void exploreMenuItem_Click();
             void titleMenuItem_Click();
             void webMenuItem_Click();
+#ifdef ENABLE_acc
             void accountMenuItem_Click();
+#endif
 #ifdef ENABLE_nfp
             void amiiboMenuItem_Click();
 #endif
@@ -46,7 +48,9 @@ namespace ui
             pu::ui::elm::MenuItem::Ref exploreMenuItem;
             pu::ui::elm::MenuItem::Ref titleMenuItem;
             pu::ui::elm::MenuItem::Ref webMenuItem;
+#ifdef ENABLE_acc
             pu::ui::elm::MenuItem::Ref accountMenuItem;
+#endif
 #ifdef ENABLE_nfp
             pu::ui::elm::MenuItem::Ref amiiboMenuItem;
 #endif

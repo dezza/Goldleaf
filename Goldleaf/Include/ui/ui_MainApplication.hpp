@@ -21,7 +21,9 @@
 
 #pragma once
 #include <ui/ui_AboutLayout.hpp>
+#ifdef ENABLE_acc
 #include <ui/ui_AccountLayout.hpp>
+#endif
 #ifdef ENABLE_nfp
 #include <ui/ui_AmiiboDumpLayout.hpp>
 #endif
@@ -72,7 +74,9 @@ namespace ui
             void storageContents_Input(u64 down, u64 up, u64 held);
             void contentManager_Input(u64 down, u64 up, u64 held);
             void unusedTickets_Input(u64 down, u64 up, u64 held);
+#ifdef ENABLE_acc
             void account_Input(u64 down, u64 up, u64 held);
+#endif
 #ifdef ENABLE_nfp
             void amiibo_Input(u64 down, u64 up, u64 held);
 #endif
@@ -80,9 +84,13 @@ namespace ui
             void memory_Input(u64 down, u64 up, u64 held);
             void webBrowser_Input(u64 down, u64 up, u64 held);
             void about_Input(u64 down, u64 up, u64 held);
+#ifdef ENABLE_acc
             void userImage_OnClick();
+#endif
             void helpImage_OnClick();
+#ifdef ENABLE_acc
             void ReloadUser(AccountUid User);
+#endif
             void OnInput(u64 down, u64 up, u64 held);
             MainMenuLayout::Ref &GetMainMenuLayout();
             PartitionBrowserLayout::Ref &GetBrowserLayout();
@@ -98,7 +106,9 @@ namespace ui
             TitleDumperLayout::Ref &GetTitleDumperLayout();
 #endif
             UnusedTicketsLayout::Ref &GetUnusedTicketsLayout();
+#ifdef ENABLE_acc
             AccountLayout::Ref &GetAccountLayout();
+#endif
 #ifdef ENABLE_nfp
             AmiiboDumpLayout::Ref &GetAmiiboDumpLayout();
 #endif
@@ -115,7 +125,9 @@ namespace ui
             bool preisch;
             bool hasusb;
             u32 connstate;
+#ifdef ENABLE_acc
             AccountUid seluser;
+#endif
             String pretime;
             bool vfirst;
             MainMenuLayout::Ref mainMenu;
@@ -134,7 +146,9 @@ namespace ui
             TitleDumperLayout::Ref titleDump;
 #endif
             UnusedTicketsLayout::Ref unusedTickets;
+#ifdef ENABLE_acc
             AccountLayout::Ref account;
+#endif
 #ifdef ENABLE_nfp
             AmiiboDumpLayout::Ref amiibo;
 #endif

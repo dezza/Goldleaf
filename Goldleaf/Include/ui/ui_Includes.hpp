@@ -21,8 +21,10 @@
 
 #pragma once
 #include <fs/fs_FileSystem.hpp>
+#ifdef ENABLE_acc
 #include <acc/acc_Service.hpp>
 #include <acc/acc_UserSelection.hpp>
+#endif
 #include <dump/dump_Export.hpp>
 #include <err/err_Result.hpp>
 #include <es/es_Service.hpp>

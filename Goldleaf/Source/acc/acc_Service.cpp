@@ -1,3 +1,4 @@
+#ifdef ENABLE_acc
 
 /*
 
@@ -86,3 +87,4 @@ namespace acc
         return serviceDispatchOut(srv, 120, *out_id);
     }
 }
+#endif
