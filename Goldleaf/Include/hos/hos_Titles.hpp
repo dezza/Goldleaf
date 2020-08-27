@@ -24,7 +24,9 @@
 #include <string>
 #include <vector>
 #include <Types.hpp>
+#ifdef ENABLE_ncm
 #include <ncm/ncm_Types.hpp> 
+#endif
 #include <ns/ns_Service.hpp>
 #include <es/es_Service.hpp>
 
@@ -61,8 +63,10 @@ namespace hos
 
     struct ContentId
     {
+#ifdef ENABLE_ncm
         ncm::ContentType Type;
         NcmContentId NCAId;
+#endif
         Storage Location;
         bool Empty;
         u64 Size;
@@ -94,9 +98,13 @@ namespace hos
     struct Title
     {
         u64 ApplicationId;
+#ifdef ENABLE_ncm
         ncm::ContentMetaType Type;
+#endif
         u32 Version;
+#ifdef ENABLE_ncm
         NcmContentMetaKey Record;
+#endif
         Storage Location;
         
         NacpStruct *TryGetNACP();
@@ -172,15 +180,20 @@ namespace hos
     constexpr u32 MaxTitleCount = 64000;
 
     std::string FormatApplicationId(u64 ApplicationId);
+#ifdef ENABLE_ncm
     std::vector<Title> SearchTitles(ncm::ContentMetaType Type, Storage Location);
+#endif
     Title Locate(u64 ApplicationId);
+#ifdef ENABLE_ncm
     bool ExistsTitle(ncm::ContentMetaType Type, Storage Location, u64 ApplicationId);
+#endif
     std::vector<Ticket> GetAllTickets();
     Result RemoveTitle(Title &ToRemove);
     Result RemoveTicket(Ticket &ToRemove);
     std::string GetExportedIconPath(u64 ApplicationId);
     String GetExportedNACPPath(u64 ApplicationId);
     
+#ifdef ENABLE_ncm
     inline constexpr u64 GetBaseApplicationId(u64 ApplicationId, ncm::ContentMetaType Type)
     {
         auto appid = ApplicationId;
@@ -198,6 +211,7 @@ namespace hos
         }
         return appid;
     }
+#endif
 
     inline constexpr u32 GetIdFromDLCApplicationId(u64 ApplicationId)
     {

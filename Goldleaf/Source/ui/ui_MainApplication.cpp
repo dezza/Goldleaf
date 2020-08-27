@@ -118,17 +118,21 @@ namespace ui
 #ifdef ENABLE_nsp
         this->nspInstall = InstallLayout::New();
 #endif
+#ifdef ENABLE_ncm
         this->contentInformation = ContentInformationLayout::New();
         this->contentInformation->SetOnInput(std::bind(&MainApplication::contentInformation_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->storageContents = StorageContentsLayout::New();
         this->storageContents->SetOnInput(std::bind(&MainApplication::storageContents_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         this->contentManager = ContentManagerLayout::New();
         this->contentManager->SetOnInput(std::bind(&MainApplication::contentManager_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
 #ifdef ENABLE_dump
         this->titleDump = TitleDumperLayout::New();
 #endif
+#ifdef ENABLE_ncm
         this->unusedTickets = UnusedTicketsLayout::New();
         this->unusedTickets->SetOnInput(std::bind(&MainApplication::unusedTickets_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
 #ifdef ENABLE_acc
         this->account = AccountLayout::New();
         this->account->SetOnInput(std::bind(&MainApplication::account_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -160,13 +164,17 @@ namespace ui
 #ifdef ENABLE_nsp
         MAINAPP_MENU_SET_BASE(this->nspInstall);
 #endif
+#ifdef ENABLE_ncm
         MAINAPP_MENU_SET_BASE(this->contentInformation);
         MAINAPP_MENU_SET_BASE(this->storageContents);
         MAINAPP_MENU_SET_BASE(this->contentManager);
+#endif
 #ifdef ENABLE_dump
         MAINAPP_MENU_SET_BASE(this->titleDump);
 #endif
+#ifdef ENABLE_ncm
         MAINAPP_MENU_SET_BASE(this->unusedTickets);
+#endif
 #ifdef ENABLE_acc
         MAINAPP_MENU_SET_BASE(this->account);
 #endif
@@ -429,7 +437,7 @@ namespace ui
         else if((down & KEY_DDOWN) || (down & KEY_LSTICK_DOWN) || (held & KEY_RSTICK_DOWN)) this->fileContent->ScrollDown();
         else if((down & KEY_DUP) || (down & KEY_LSTICK_UP) || (held & KEY_RSTICK_UP)) this->fileContent->ScrollUp();
     }
-
+#ifdef ENABLE_ncm
     void MainApplication::contentInformation_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B)
@@ -457,7 +465,7 @@ namespace ui
     {
         if(down & KEY_B) this->ReturnToMainMenu();
     }
-
+#endif
 #ifdef ENABLE_acc
     void MainApplication::account_Input(u64 down, u64 up, u64 held)
     {
@@ -554,6 +562,7 @@ namespace ui
         return this->nspInstall;
     }
 #endif
+#ifdef ENABLE_ncm
     ContentInformationLayout::Ref &MainApplication::GetContentInformationLayout()
     {
         return this->contentInformation;
@@ -568,16 +577,19 @@ namespace ui
     {
         return this->contentManager;
     }
+#endif
 #ifdef ENABLE_dump
     TitleDumperLayout::Ref &MainApplication::GetTitleDumperLayout()
     {
         return this->titleDump;
     }
 #endif
+#ifdef ENABLE_ncm
     UnusedTicketsLayout::Ref &MainApplication::GetUnusedTicketsLayout()
     {
         return this->unusedTickets;
     }
+#endif
 #ifdef ENABLE_acc
     AccountLayout::Ref &MainApplication::GetAccountLayout()
     {

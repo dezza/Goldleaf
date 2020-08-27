@@ -30,14 +30,17 @@
 
 namespace hos
 {
+#ifdef ENABLE_ncm
     String ContentId::GetFileName()
     {
         return hos::ContentIdAsString(this->NCAId) + ".nca";
     }
+#endif
 
     String ContentId::GetFullPath()
     {
         String path;
+#ifdef ENABLE_ncm
         NcmContentStorage cst;
         auto rc = ncmOpenContentStorage(&cst, static_cast<NcmStorageId>(this->Location));
         if(R_SUCCEEDED(rc))
@@ -47,6 +50,7 @@ namespace hos
             if(R_SUCCEEDED(rc)) path = pout;
         }
         ncmContentStorageClose(&cst);
+#endif
         return path;
     }
 
@@ -59,7 +63,7 @@ namespace hos
     {
         return fs::FormatSize(this->GetTotalSize());
     }
-
+#ifdef ENABLE_ncm
     NacpStruct *Title::TryGetNACP()
     {
         NacpStruct *nacp = nullptr;
@@ -97,6 +101,7 @@ namespace hos
         }
         return icon;
     }
+#endif
 
     bool Title::DumpControlData()
     {
@@ -121,7 +126,7 @@ namespace hos
         }
         return has_icon;
     }
-
+#ifdef ENABLE_ncm
     TitleContents Title::GetContents()
     {
         TitleContents cnts = {};
@@ -183,6 +188,7 @@ namespace hos
     {
         return ((this->ApplicationId != Other.ApplicationId) && ((GetBaseApplicationId(this->ApplicationId, this->Type) == GetBaseApplicationId(Other.ApplicationId, Other.Type))));
     }
+#endif
 
     inline TitlePlayStats ProcessFromPdm(PdmPlayStatistics Stats)
     {
@@ -240,7 +246,7 @@ namespace hos
         strm << std::uppercase << std::setfill('0') << std::setw(16) << std::hex << ApplicationId;
         return strm.str();
     }
-
+#ifdef ENABLE_ncm
     std::vector<Title> SearchTitles(ncm::ContentMetaType Type, Storage Location)
     {
         std::vector<Title> titles;
@@ -346,6 +352,7 @@ namespace hos
         if(R_SUCCEEDED(rc)) ns::DeleteApplicationRecord(ToRemove.ApplicationId);
         return rc;
     }
+#endif
 
     Result RemoveTicket(Ticket &ToRemove)
     {

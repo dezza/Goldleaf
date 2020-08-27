@@ -25,7 +25,9 @@
 #include <cstring>
 #include <switch.h>
 #include <Types.hpp>
+#ifdef ENABLE_ncm
 #include <ncm/ncm_Types.hpp>
+#endif
 
 namespace hos
 {
@@ -36,8 +38,10 @@ namespace hos
         u32 Micro;
     };
 
+#ifdef ENABLE_ncm
     String ContentIdAsString(const NcmContentId &ContentId);
     NcmContentId StringAsContentId(String ContentId);
+#endif
 
     bool GetPendingUpdateInfo(PendingUpdateVersion *out);
     SetSysFirmwareVersion ConvertPendingUpdateVersion(PendingUpdateVersion ver);

@@ -39,7 +39,9 @@
 #include <ui/ui_PCExploreLayout.hpp>
 #include <ui/ui_SettingsLayout.hpp>
 #include <ui/ui_StorageContentsLayout.hpp>
+#ifdef ENABLE_ncm
 #include <ui/ui_UnusedTicketsLayout.hpp>
+#endif
 #ifdef ENABLE_dump
 #include <ui/ui_TitleDumperLayout.hpp>
 #endif
@@ -70,10 +72,12 @@ namespace ui
             void exploreMenu_Input(u64 down, u64 up, u64 held);
             void pcExplore_Input(u64 down, u64 up, u64 held);
             void fileContent_Input(u64 down, u64 up, u64 held);
+#ifdef ENABLE_ncm
             void contentInformation_Input(u64 down, u64 up, u64 held);
             void storageContents_Input(u64 down, u64 up, u64 held);
             void contentManager_Input(u64 down, u64 up, u64 held);
             void unusedTickets_Input(u64 down, u64 up, u64 held);
+#endif
 #ifdef ENABLE_acc
             void account_Input(u64 down, u64 up, u64 held);
 #endif
@@ -98,14 +102,18 @@ namespace ui
             CopyLayout::Ref &GetCopyLayout();
             ExploreMenuLayout::Ref &GetExploreMenuLayout();
             PCExploreLayout::Ref &GetPCExploreLayout();
+#ifdef ENABLE_ncm
             InstallLayout::Ref &GetInstallLayout();
             ContentInformationLayout::Ref &GetContentInformationLayout();
             StorageContentsLayout::Ref &GetStorageContentsLayout();
             ContentManagerLayout::Ref &GetContentManagerLayout();
+#endif
 #ifdef ENABLE_dump
             TitleDumperLayout::Ref &GetTitleDumperLayout();
 #endif
+#ifdef ENABLE_ncm
             UnusedTicketsLayout::Ref &GetUnusedTicketsLayout();
+#endif
 #ifdef ENABLE_acc
             AccountLayout::Ref &GetAccountLayout();
 #endif
@@ -145,7 +153,9 @@ namespace ui
 #ifdef ENABLE_dump
             TitleDumperLayout::Ref titleDump;
 #endif
+#ifdef ENABLE_ncm
             UnusedTicketsLayout::Ref unusedTickets;
+#endif
 #ifdef ENABLE_acc
             AccountLayout::Ref account;
 #endif

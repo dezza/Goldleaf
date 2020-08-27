@@ -24,6 +24,7 @@
 
 namespace hos
 {
+#ifdef ENABLE_ncm
     String ContentIdAsString(const NcmContentId &NCAId)
     {
         char idstr[FS_MAX_PATH] = {0};
@@ -44,7 +45,7 @@ namespace hos
         *(u64*)(nid.c + 0x8) = __bswap64(strtoul(upper, nullptr, 16));
         return nid;
     }
-
+#endif
     bool GetPendingUpdateInfo(PendingUpdateVersion *out)
     {
         auto sys = fs::GetNANDSystemExplorer();

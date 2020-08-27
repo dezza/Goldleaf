@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_ncm
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -41,3 +41,4 @@ namespace ncm
             ByteBuffer buf;
     };
 }
+#endif

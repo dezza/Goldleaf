@@ -51,6 +51,7 @@ namespace ui
         this->optionsMenu->SetSelectedIndex(0);
     }
 
+#ifdef ENABLE_ncm
     void ContentInformationLayout::options_Click()
     {
         u32 idx = this->optionsMenu->GetSelectedIndex();
@@ -235,7 +236,9 @@ namespace ui
             else HandleResult(rc, cfg::strings::Main.GetString(234));
         }
     }
+#endif
 
+#ifdef ENABLE_ncm
     void ContentInformationLayout::LoadContent(hos::Title &Content)
     {
         this->tcontents.clear();
@@ -262,4 +265,5 @@ namespace ui
         global_app->LoadMenuData(cfg::strings::Main.GetString(187), icon, tcnt, false);
         this->UpdateElements();
     }
+#endif
 }

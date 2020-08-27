@@ -36,10 +36,12 @@ namespace ui
         this->exploreMenuItem->SetIcon(global_settings.PathForResource("/Common/SdCard.png"));
         this->exploreMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->exploreMenuItem->AddOnClick(std::bind(&MainMenuLayout::exploreMenuItem_Click, this));
+#ifdef ENABLE_ncm
         this->titleMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(3));
         this->titleMenuItem->SetIcon(global_settings.PathForResource("/Common/Storage.png"));
         this->titleMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->titleMenuItem->AddOnClick(std::bind(&MainMenuLayout::titleMenuItem_Click, this));
+#endif
         this->webMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(5));
         this->webMenuItem->SetIcon(global_settings.PathForResource("/Common/Browser.png"));
         this->webMenuItem->SetColor(global_settings.custom_scheme.Text);
@@ -71,7 +73,9 @@ namespace ui
         this->aboutMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->aboutMenuItem->AddOnClick(std::bind(&MainMenuLayout::aboutMenuItem_Click, this));
         this->optionMenu->AddItem(this->exploreMenuItem);
+#ifdef ENABLE_ncm
         this->optionMenu->AddItem(this->titleMenuItem);
+#endif
         this->optionMenu->AddItem(this->webMenuItem);
 #ifdef ENABLE_acc
         this->optionMenu->AddItem(this->accountMenuItem);
@@ -94,12 +98,14 @@ namespace ui
         global_app->LoadLayout(global_app->GetExploreMenuLayout());
     }
 
+#ifdef ENABLE_ncm
     void MainMenuLayout::titleMenuItem_Click()
     {
         global_app->LoadMenuData(cfg::strings::Main.GetString(32), "Storage", cfg::strings::Main.GetString(33));
         EnsureDirectories();
         global_app->LoadLayout(global_app->GetContentManagerLayout());
     }
+#endif
 
     void MainMenuLayout::webMenuItem_Click()
     {

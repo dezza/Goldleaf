@@ -1,3 +1,4 @@
+#ifdef ENABLE_ncm
 
 /*
 
@@ -89,3 +90,4 @@ namespace ncm
         }
     }
 }
+#endif
