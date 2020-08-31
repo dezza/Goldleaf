@@ -61,6 +61,7 @@ namespace ui
         this->usbDriveMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->usbDriveMenuItem->AddOnClick(std::bind(&ExploreMenuLayout::usbDrive_Click, this));
 #endif
+#ifdef ENABLE_mem
         this->nandProfInfoFMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(20) + " (PRODINFOF)");
         this->nandProfInfoFMenuItem->SetIcon(global_settings.PathForResource("/Common/NAND.png"));
         this->nandProfInfoFMenuItem->SetColor(global_settings.custom_scheme.Text);
@@ -77,15 +78,18 @@ namespace ui
         this->nandSystemMenuItem->SetIcon(global_settings.PathForResource("/Common/NAND.png"));
         this->nandSystemMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->nandSystemMenuItem->AddOnClick(std::bind(&ExploreMenuLayout::nandSystem_Click, this));
+#endif
         this->mountsMenu->AddItem(this->sdCardMenuItem);
 #ifdef ENABLE_usb
         this->mountsMenu->AddItem(this->pcDriveMenuItem);
         this->mountsMenu->AddItem(this->usbDriveMenuItem);
 #endif
+#ifdef ENABLE_mem
         this->mountsMenu->AddItem(this->nandProfInfoFMenuItem);
         this->mountsMenu->AddItem(this->nandSafeMenuItem);
         this->mountsMenu->AddItem(this->nandUserMenuItem);
         this->mountsMenu->AddItem(this->nandSystemMenuItem);
+#endif
         for(auto &mount: this->mounts)
         {
             this->mountsMenu->AddItem(mount);
@@ -136,6 +140,7 @@ namespace ui
         }
     }
 #endif
+#ifdef ENABLE_mem
     void ExploreMenuLayout::nandProdInfoF_Click()
     {
         global_app->GetBrowserLayout()->ChangePartitionNAND(fs::Partition::PRODINFOF);
@@ -163,7 +168,7 @@ namespace ui
         global_app->LoadMenuData(cfg::strings::Main.GetString(1), "NAND", global_app->GetBrowserLayout()->GetExplorer()->GetPresentableCwd());
         global_app->LoadLayout(global_app->GetBrowserLayout());
     }
-
+#endif
     void ExploreMenuLayout::explorer_Click(fs::Explorer *exp, String name, std::string icon)
     {
         global_app->GetBrowserLayout()->ChangePartitionExplorer(exp);

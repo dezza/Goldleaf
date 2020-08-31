@@ -32,6 +32,7 @@ namespace ui
             PU_SMART_CTOR(MainMenuLayout)
 
             void exploreMenuItem_Click();
+            void sshMenuItem_Click();
             void titleMenuItem_Click();
             void webMenuItem_Click();
 #ifdef ENABLE_acc
@@ -46,6 +47,7 @@ namespace ui
         private:
             pu::ui::elm::Menu::Ref optionMenu;
             pu::ui::elm::MenuItem::Ref exploreMenuItem;
+            pu::ui::elm::MenuItem::Ref sshMenuItem;
             pu::ui::elm::MenuItem::Ref titleMenuItem;
             pu::ui::elm::MenuItem::Ref webMenuItem;
 #ifdef ENABLE_acc

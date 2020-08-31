@@ -34,9 +34,12 @@
 #include <ui/ui_FileContentLayout.hpp>
 #include <ui/ui_InstallLayout.hpp>
 #include <ui/ui_MainMenuLayout.hpp>
+#ifdef ENABLE_mem
 #include <ui/ui_MemoryLayout.hpp>
+#endif
 #include <ui/ui_PartitionBrowserLayout.hpp>
 #include <ui/ui_PCExploreLayout.hpp>
+#include <ui/ui_SSHExploreLayout.hpp>
 #include <ui/ui_SettingsLayout.hpp>
 #include <ui/ui_StorageContentsLayout.hpp>
 #ifdef ENABLE_ncm
@@ -72,6 +75,7 @@ namespace ui
             void UnloadMenuData();
             void browser_Input(u64 down, u64 up, u64 held);
             void exploreMenu_Input(u64 down, u64 up, u64 held);
+            void sshExplore_Input(u64 down, u64 up, u64 held);
             void pcExplore_Input(u64 down, u64 up, u64 held);
             void fileContent_Input(u64 down, u64 up, u64 held);
 #ifdef ENABLE_ncm
@@ -87,7 +91,9 @@ namespace ui
             void amiibo_Input(u64 down, u64 up, u64 held);
 #endif
             void settings_Input(u64 down, u64 up, u64 held);
+#ifdef ENABLE_mem
             void memory_Input(u64 down, u64 up, u64 held);
+#endif
 #ifdef ENABLE_web
             void webBrowser_Input(u64 down, u64 up, u64 held);
 #endif
@@ -106,6 +112,7 @@ namespace ui
             CopyLayout::Ref &GetCopyLayout();
             ExploreMenuLayout::Ref &GetExploreMenuLayout();
             PCExploreLayout::Ref &GetPCExploreLayout();
+            SSHExploreLayout::Ref &GetSSHExploreLayout();
 #ifdef ENABLE_ncm
             InstallLayout::Ref &GetInstallLayout();
             ContentInformationLayout::Ref &GetContentInformationLayout();
@@ -125,7 +132,9 @@ namespace ui
             AmiiboDumpLayout::Ref &GetAmiiboDumpLayout();
 #endif
             SettingsLayout::Ref &GetSettingsLayout();
+#ifdef ENABLE_mem
             MemoryLayout::Ref &GetMemoryLayout();
+#endif
 #ifdef ENABLE_net
             UpdateLayout::Ref &GetUpdateLayout();
 #endif
@@ -150,6 +159,7 @@ namespace ui
             CopyLayout::Ref copy;
             ExploreMenuLayout::Ref exploreMenu;
             PCExploreLayout::Ref pcExplore;
+            SSHExploreLayout::Ref sshExplore;
 #ifdef ENABLE_nsp
             InstallLayout::Ref nspInstall;
 #endif
@@ -169,7 +179,9 @@ namespace ui
             AmiiboDumpLayout::Ref amiibo;
 #endif
             SettingsLayout::Ref settings;
+#ifdef ENABLE_mem
             MemoryLayout::Ref memory;
+#endif
 #ifdef ENABLE_net
             UpdateLayout::Ref update;
 #endif

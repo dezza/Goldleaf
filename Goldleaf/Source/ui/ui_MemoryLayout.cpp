@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_mem
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -95,3 +95,4 @@ namespace ui
         this->sdFreeText->SetText(fs::FormatSize(sdcfree) + " " + cfg::strings::Main.GetString(221));
     }
 }
+#endif

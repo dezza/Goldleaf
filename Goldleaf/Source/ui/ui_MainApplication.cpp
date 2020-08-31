@@ -115,6 +115,8 @@ namespace ui
         this->pcExplore = PCExploreLayout::New();
         this->pcExplore->SetOnInput(std::bind(&MainApplication::pcExplore_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 #endif
+        this->sshExplore = SSHExploreLayout::New();
+        this->sshExplore->SetOnInput(std::bind(&MainApplication::sshExplore_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 #ifdef ENABLE_nsp
         this->nspInstall = InstallLayout::New();
 #endif
@@ -143,8 +145,10 @@ namespace ui
 #endif
         this->settings = SettingsLayout::New();
         this->settings->SetOnInput(std::bind(&MainApplication::settings_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#ifdef ENABLE_mem
         this->memory = MemoryLayout::New();
         this->memory->SetOnInput(std::bind(&MainApplication::memory_Input, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+#endif
 #ifdef ENABLE_net
         this->update = UpdateLayout::New();
 #endif
@@ -158,6 +162,7 @@ namespace ui
         MAINAPP_MENU_SET_BASE(this->mainMenu);
         MAINAPP_MENU_SET_BASE(this->browser);
         MAINAPP_MENU_SET_BASE(this->exploreMenu);
+        MAINAPP_MENU_SET_BASE(this->sshExplore);
 #ifdef ENABLE_usb
         MAINAPP_MENU_SET_BASE(this->pcExplore);
 #endif
@@ -184,7 +189,9 @@ namespace ui
         MAINAPP_MENU_SET_BASE(this->amiibo);
 #endif
         MAINAPP_MENU_SET_BASE(this->settings);
+#ifdef ENABLE_mem
         MAINAPP_MENU_SET_BASE(this->memory);
+#endif
 #ifdef ENABLE_net
         MAINAPP_MENU_SET_BASE(this->update);
 #endif
@@ -424,6 +431,16 @@ namespace ui
         if(down & KEY_B) this->ReturnToMainMenu();
     }
 
+    void MainApplication::sshExplore_Input(u64 down, u64 up, u64 held)
+    {
+        if(down & KEY_B)
+        {
+            this->UnloadMenuData();
+            this->LoadMenuData(cfg::strings::Main.GetString(277), "Storage", cfg::strings::Main.GetString(278));
+            this->LoadLayout(this->exploreMenu);
+        }
+    }
+
 #ifdef ENABLE_usb
     void MainApplication::pcExplore_Input(u64 down, u64 up, u64 held)
     {
@@ -489,6 +506,7 @@ namespace ui
         if(down & KEY_B) this->ReturnToMainMenu();
     }
 
+#ifdef ENABLE_mem
     void MainApplication::memory_Input(u64 down, u64 up, u64 held)
     {
         if(down & KEY_B)
@@ -498,6 +516,7 @@ namespace ui
             this->LoadLayout(this->settings);
         }
     }
+#endif
 #ifdef ENABLE_web
     void MainApplication::webBrowser_Input(u64 down, u64 up, u64 held)
     {
@@ -553,6 +572,10 @@ namespace ui
     ExploreMenuLayout::Ref &MainApplication::GetExploreMenuLayout()
     {
         return this->exploreMenu;
+    }
+    SSHExploreLayout::Ref &MainApplication::GetSSHExploreLayout()
+    {
+        return this->sshExplore;
     }
 #ifdef ENABLE_usb
     PCExploreLayout::Ref &MainApplication::GetPCExploreLayout()
@@ -612,11 +635,12 @@ namespace ui
         return this->settings;
     }
 
+#ifdef ENABLE_mem
     MemoryLayout::Ref &MainApplication::GetMemoryLayout()
     {
         return this->memory;
     }
-
+#endif
 #ifdef ENABLE_net
     UpdateLayout::Ref &MainApplication::GetUpdateLayout()
     {

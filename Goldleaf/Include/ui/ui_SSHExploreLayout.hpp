@@ -1,4 +1,4 @@
-#ifdef ENABLE_mem
+
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -25,27 +25,21 @@
 
 namespace ui
 {
-    class MemoryLayout : public pu::ui::Layout
+    class SSHExploreLayout : public pu::ui::Layout
     {
         public:
-            MemoryLayout();
-            PU_SMART_CTOR(MemoryLayout)
+            SSHExploreLayout();
+            PU_SMART_CTOR(SSHExploreLayout)
 
-            void UpdateElements();
+            void UpdatePaths();
+            void UpdateMenu();
+            void ssh_Click();
+            void path_Click();
+            //void fileSelect_Click();
         private:
-            pu::ui::elm::TextBlock::Ref fwText;
-            pu::ui::elm::TextBlock::Ref sdText;
-            pu::ui::elm::ProgressBar::Ref sdBar;
-            pu::ui::elm::TextBlock::Ref sdFreeText;
-            pu::ui::elm::TextBlock::Ref nandText;
-            pu::ui::elm::ProgressBar::Ref nandBar;
-            pu::ui::elm::TextBlock::Ref nandFreeText;
-            pu::ui::elm::TextBlock::Ref safeText;
-            pu::ui::elm::ProgressBar::Ref safeBar;
-            pu::ui::elm::TextBlock::Ref systemText;
-            pu::ui::elm::ProgressBar::Ref systemBar;
-            pu::ui::elm::TextBlock::Ref userText;
-            pu::ui::elm::ProgressBar::Ref userBar;
+            std::vector<String> names;
+            std::vector<String> paths;
+            pu::ui::elm::Menu::Ref pathsMenu;
+            std::vector<pu::ui::elm::MenuItem::Ref> pathItems;
     };
 }
-#endif

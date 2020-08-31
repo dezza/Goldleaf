@@ -36,6 +36,10 @@ namespace ui
         this->exploreMenuItem->SetIcon(global_settings.PathForResource("/Common/SdCard.png"));
         this->exploreMenuItem->SetColor(global_settings.custom_scheme.Text);
         this->exploreMenuItem->AddOnClick(std::bind(&MainMenuLayout::exploreMenuItem_Click, this));
+        this->sshMenuItem = pu::ui::elm::MenuItem::New("SSH");
+        this->sshMenuItem->SetIcon(global_settings.PathForResource("/Common/Storage.png"));
+        this->sshMenuItem->SetColor(global_settings.custom_scheme.Text);
+        this->sshMenuItem->AddOnClick(std::bind(&MainMenuLayout::sshMenuItem_Click, this));
 #ifdef ENABLE_ncm
         this->titleMenuItem = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(3));
         this->titleMenuItem->SetIcon(global_settings.PathForResource("/Common/Storage.png"));
@@ -92,6 +96,7 @@ namespace ui
         this->optionMenu->AddItem(this->updateMenuItem);
 #endif
         this->optionMenu->AddItem(this->aboutMenuItem);
+        this->optionMenu->AddItem(this->sshMenuItem);
         this->Add(this->optionMenu);
     }
 
@@ -102,6 +107,12 @@ namespace ui
         global_app->LoadLayout(global_app->GetExploreMenuLayout());
     }
 
+    void MainMenuLayout::sshMenuItem_Click()
+    {
+        global_app->LoadMenuData("SSHstring1", "Storage", "SSHstring2");
+        global_app->GetSSHExploreLayout()->UpdateMenu();
+        global_app->LoadLayout(global_app->GetSSHExploreLayout());
+    }
 #ifdef ENABLE_ncm
     void MainMenuLayout::titleMenuItem_Click()
     {

@@ -1,4 +1,4 @@
-
+#ifdef ENABLE_nsp
 /*
 
     Goldleaf - Multipurpose homebrew tool for Nintendo Switch
@@ -269,3 +269,4 @@ namespace ui
 #endif
     }
 }
+#endif

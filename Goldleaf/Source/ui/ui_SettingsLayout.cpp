@@ -36,10 +36,12 @@ namespace ui
         itm->SetColor(global_settings.custom_scheme.Text);
         itm->AddOnClick(std::bind(&SettingsLayout::optsFirmware_Click, this));
         this->optsMenu->AddItem(itm);
+#ifdef ENABLE_mem
         auto itm2 = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(353));
         itm2->SetColor(global_settings.custom_scheme.Text);
         itm2->AddOnClick(std::bind(&SettingsLayout::optsMemory_Click, this));
         this->optsMenu->AddItem(itm2);
+#endif
         auto itm3 = pu::ui::elm::MenuItem::New(cfg::strings::Main.GetString(354));
         itm3->SetColor(global_settings.custom_scheme.Text);
         itm3->AddOnClick(std::bind(&SettingsLayout::optsConfig_Click, this));
@@ -145,10 +147,11 @@ namespace ui
         else if(sopt == 3) this->HandleUpdate("Contents/placehld", pendfwver);
 #endif
     }
-
+#ifdef ENABLE_mem
     void SettingsLayout::optsMemory_Click()
     {
         global_app->GetMemoryLayout()->UpdateElements();
         global_app->LoadLayout(global_app->GetMemoryLayout());
     }
+#endif
 }
